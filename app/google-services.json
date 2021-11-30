@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "928935818765",
+    "project_id": "votingapp-27aff",
+    "storage_bucket": "votingapp-27aff.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:928935818765:android:b2f799a8ed721978960744",
+        "android_client_info": {
+          "package_name": "com.rahul.votingapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "928935818765-47rjngsunhtl0uraon45619vjjvdr7am.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCDsr69G38soKmwQ7Z3Mw7ELhA8_X0WMn8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "928935818765-47rjngsunhtl0uraon45619vjjvdr7am.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
