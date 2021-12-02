@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.VotingApp">
         <activity
+            android:name=".MainActivity"
+            android:exported="true"/>
+        <activity
             android:name=".SignInActivity"
             android:exported="true">
             <intent-filter>
@@ -17,10 +20,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".MainActivity"
-            android:exported="false">
-        </activity>
+
     </application>
 
 </manifest>
