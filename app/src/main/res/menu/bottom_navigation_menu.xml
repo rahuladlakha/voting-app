@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+  <item android:id="@+id/homeItem"
+      android:title="Home"
+      android:icon="@drawable/ic_home_twotone"
+      app:showAsAction="ifRoom"/>
+  <item android:id="@+id/resultItem"
+      android:title="Results"
+      android:icon="@drawable/ic_results"
+      app:showAsAction="ifRoom"/>
+  <item android:id="@+id/profileItem"
+      android:title="Profile"
+      android:icon="@drawable/ic_profile_twotone"
+      app:showAsAction="ifRoom"/>
+
+</menu>
