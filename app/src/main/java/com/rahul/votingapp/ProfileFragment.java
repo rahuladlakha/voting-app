@@ -13,6 +13,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.mikhaellopez.circularimageview.CircularImageView;
+
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -62,7 +64,7 @@ public class ProfileFragment extends Fragment {
             ((TextView)getActivity().findViewById(R.id.emailTextView))
                     .setText(MainActivity.userEmail);
             if (bitmap != null){
-            ((ImageView)getActivity().findViewById(R.id.profileImageView))
+            ((CircularImageView)getActivity().findViewById(R.id.profileImageView))
                         .setImageBitmap(bitmap);
             }
 
