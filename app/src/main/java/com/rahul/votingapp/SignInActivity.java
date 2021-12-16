@@ -8,6 +8,7 @@ import android.content.SharedPreferences;
 import android.icu.text.AlphabeticIndex;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -29,14 +30,20 @@ import com.google.firebase.auth.GoogleAuthProvider;
 public class SignInActivity extends AppCompatActivity {
 
     SignInButton btnSignIn;
-    private GoogleSignInClient mGoogleSignInClient;
+    private static GoogleSignInClient mGoogleSignInClient;
     public static final int RC_SIGN_IN = 123;
-    private FirebaseAuth mAuth;
+    private static FirebaseAuth mAuth;
+    public static void signout(){
+        mAuth.signOut();
+        mGoogleSignInClient.signOut();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
+
+        getSupportActionBar().hide();
 
         btnSignIn = findViewById(R.id.btnSignIn);
         mAuth = FirebaseAuth.getInstance();
@@ -60,7 +67,7 @@ public class SignInActivity extends AppCompatActivity {
 
     private void requestGoogleSignIn() {
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken(getString(R.string.default_web_client_id))
+                .requestIdToken("928935818765-47rjngsunhtl0uraon45619vjjvdr7am.apps.googleusercontent.com")
                 .requestEmail()
                 .build();
 
@@ -87,7 +94,7 @@ public class SignInActivity extends AppCompatActivity {
 
             } catch (ApiException e) {
                 // Google Sign In failed, update UI appropriately
-                Toast.makeText(SignInActivity.this, "Authentication Failed " + e.getMessage(), Toast.LENGTH_LONG).show();
+               // Toast.makeText(SignInActivity.this, "Authentication Failed " + e.getMessage(), Toast.LENGTH_LONG).show();
             }
         }
     }
@@ -105,7 +112,7 @@ public class SignInActivity extends AppCompatActivity {
                             SignInActivity.this.finish();
                         } else {
                             // If sign in fails, display a message to the user.
-                            Toast.makeText(SignInActivity.this, "Authentication Failed", Toast.LENGTH_LONG).show();
+                           // Toast.makeText(SignInActivity.this, "Authentication Failed", Toast.LENGTH_LONG).show();
                         }
                     }
                 });
