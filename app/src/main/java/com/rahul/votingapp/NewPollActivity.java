@@ -13,7 +13,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 public class NewPollActivity extends AppCompatActivity {
-    Button btnAddOption;
+    Button btnAddOption, btnRemoveOption;
     EditText Option[] = new EditText[11];
     Integer optionCount = 2;
 
@@ -23,6 +23,7 @@ public class NewPollActivity extends AppCompatActivity {
         setContentView(R.layout.activity_new_poll);
         getSupportActionBar().hide();
         btnAddOption = findViewById(R.id.btnAddOption);
+        btnRemoveOption = findViewById(R.id.btnRemoveOption);
         Option[1] = findViewById(R.id.eTOption1);
         Option[2] = findViewById(R.id.eTOption2);
         Option[3] = findViewById(R.id.eTOption3);
@@ -36,11 +37,18 @@ public class NewPollActivity extends AppCompatActivity {
         btnAddOption.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (++optionCount > 10){
-                    Toast.makeText(NewPollActivity.this, "A maximum of 10 options are allowed !", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                Option[optionCount].setVisibility(View.VISIBLE);
+                Option[++optionCount].setVisibility(View.VISIBLE);
+                if (optionCount > 2) btnRemoveOption.setEnabled(true);
+                if (optionCount >= 10) btnAddOption.setEnabled(false);
+            }
+        });
+        btnRemoveOption.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Option[optionCount--].setVisibility(View.GONE);
+                if (optionCount < 10) btnAddOption.setEnabled(true);
+                if (optionCount <= 2) btnRemoveOption.setEnabled(false);
+
             }
         });
         findViewById(R.id.fabSavePoll).setOnClickListener(new View.OnClickListener() {
