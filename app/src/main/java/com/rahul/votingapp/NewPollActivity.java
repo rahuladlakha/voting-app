@@ -17,6 +17,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class NewPollActivity extends AppCompatActivity {
     Button btnAddOption, btnRemoveOption;
+    FloatingActionButton btnSavePoll;
     EditText Option[] = new EditText[11];
     FloatingActionButton Delete[] = new FloatingActionButton[11];
     Integer optionCount = 2;
@@ -28,6 +29,8 @@ public class NewPollActivity extends AppCompatActivity {
         getSupportActionBar().hide();
         btnAddOption = findViewById(R.id.btnAddOption);
         btnRemoveOption = findViewById(R.id.btnRemoveOption);
+        btnSavePoll = findViewById(R.id.fabSavePoll);
+
         Option[1] = findViewById(R.id.eTOption1);
         Option[2] = findViewById(R.id.eTOption2);
         Option[3] = findViewById(R.id.eTOption3);
@@ -56,6 +59,10 @@ public class NewPollActivity extends AppCompatActivity {
                 Delete[optionCount].setVisibility(View.VISIBLE);
                 if (optionCount > 2) btnRemoveOption.setEnabled(true);
                 if (optionCount >= 10) btnAddOption.setEnabled(false);
+                if(optionCount > 0)
+                    findViewById(R.id.tvNoOptions).setVisibility(View.GONE);
+                if(optionCount>=2)
+                    btnSavePoll.setEnabled(true);
             }
         });
         btnRemoveOption.setOnClickListener(new View.OnClickListener() {
@@ -79,6 +86,10 @@ public class NewPollActivity extends AppCompatActivity {
                 Option[optionCount].setVisibility(View.GONE);
                 Delete[optionCount--].setVisibility(View.GONE);
                 if (optionCount < 10) btnAddOption.setEnabled(true);
+                if(optionCount == 0)
+                    findViewById(R.id.tvNoOptions).setVisibility(View.VISIBLE);
+                if(optionCount < 2)
+                    btnSavePoll.setEnabled(false);
             }
         });
         Delete[2].setOnClickListener(new View.OnClickListener() {
@@ -92,6 +103,8 @@ public class NewPollActivity extends AppCompatActivity {
                 Option[optionCount].setVisibility(View.GONE);
                 Delete[optionCount--].setVisibility(View.GONE);
                 if (optionCount < 10) btnAddOption.setEnabled(true);
+                if(optionCount < 2)
+                    btnSavePoll.setEnabled(false);
             }
         });
         Delete[3].setOnClickListener(new View.OnClickListener() {
@@ -194,7 +207,7 @@ public class NewPollActivity extends AppCompatActivity {
                 if (optionCount < 10) btnAddOption.setEnabled(true);
             }
         });
-        findViewById(R.id.fabSavePoll).setOnClickListener(new View.OnClickListener() {
+        btnSavePoll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Toast.makeText(NewPollActivity.this, "Your poll was saved !",Toast.LENGTH_SHORT).show();
@@ -202,6 +215,5 @@ public class NewPollActivity extends AppCompatActivity {
             }
         });
     }
-
 
 }

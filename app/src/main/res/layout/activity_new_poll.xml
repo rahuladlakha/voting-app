@@ -59,6 +59,16 @@
             android:orientation="vertical"
             android:padding="10dp">
 
+            <TextView
+                android:id="@+id/tvNoOptions"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:padding="4dp"
+                android:text="No options added"
+                android:textAlignment="center"
+                android:textSize="24sp"
+                android:visibility="gone" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -100,8 +110,8 @@
                     android:id="@+id/eTOption2"
                     android:layout_width="0dp"
                     android:layout_height="50dp"
-                    android:layout_weight="1"
                     android:layout_marginBottom="10dp"
+                    android:layout_weight="1"
                     android:background="@drawable/edittext_layout"
                     android:ems="10"
                     android:hint="Option 2"
@@ -115,9 +125,9 @@
 
                 <com.google.android.material.floatingactionbutton.FloatingActionButton
                     android:id="@+id/fabDelete2"
-                    android:layout_marginStart="5dp"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
+                    android:layout_marginStart="5dp"
                     android:src="@drawable/ic_baseline_delete_24"
                     android:tint="@android:color/holo_red_light"
                     app:fabCustomSize="50dp" />
@@ -132,8 +142,8 @@
                     android:id="@+id/eTOption3"
                     android:layout_width="0dp"
                     android:layout_height="50dp"
-                    android:layout_weight="1"
                     android:layout_marginBottom="10dp"
+                    android:layout_weight="1"
                     android:background="@drawable/edittext_layout"
                     android:ems="10"
                     android:hint="Option 3"
@@ -148,12 +158,12 @@
 
                 <com.google.android.material.floatingactionbutton.FloatingActionButton
                     android:id="@+id/fabDelete3"
-                    android:layout_marginStart="5dp"
-                    android:visibility="gone"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
+                    android:layout_marginStart="5dp"
                     android:src="@drawable/ic_baseline_delete_24"
                     android:tint="@android:color/holo_red_light"
+                    android:visibility="gone"
                     app:fabCustomSize="50dp" />
             </LinearLayout>
 
@@ -166,8 +176,8 @@
                     android:id="@+id/eTOption4"
                     android:layout_width="0dp"
                     android:layout_height="50dp"
-                    android:layout_weight="1"
                     android:layout_marginBottom="10dp"
+                    android:layout_weight="1"
                     android:background="@drawable/edittext_layout"
                     android:ems="10"
                     android:hint="Option 4"
@@ -182,12 +192,12 @@
 
                 <com.google.android.material.floatingactionbutton.FloatingActionButton
                     android:id="@+id/fabDelete4"
-                    android:layout_marginStart="5dp"
-                    android:visibility="gone"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
+                    android:layout_marginStart="5dp"
                     android:src="@drawable/ic_baseline_delete_24"
                     android:tint="@android:color/holo_red_light"
+                    android:visibility="gone"
                     app:fabCustomSize="50dp" />
             </LinearLayout>
 
@@ -200,8 +210,8 @@
                     android:id="@+id/eTOption5"
                     android:layout_width="0dp"
                     android:layout_height="50dp"
-                    android:layout_weight="1"
                     android:layout_marginBottom="10dp"
+                    android:layout_weight="1"
                     android:background="@drawable/edittext_layout"
                     android:ems="10"
                     android:hint="Option 5"
@@ -216,12 +226,12 @@
 
                 <com.google.android.material.floatingactionbutton.FloatingActionButton
                     android:id="@+id/fabDelete5"
-                    android:layout_marginStart="5dp"
-                    android:visibility="gone"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
+                    android:layout_marginStart="5dp"
                     android:src="@drawable/ic_baseline_delete_24"
                     android:tint="@android:color/holo_red_light"
+                    android:visibility="gone"
                     app:fabCustomSize="50dp" />
             </LinearLayout>
 
@@ -234,8 +244,8 @@
                     android:id="@+id/eTOption6"
                     android:layout_width="0dp"
                     android:layout_height="50dp"
-                    android:layout_weight="1"
                     android:layout_marginBottom="10dp"
+                    android:layout_weight="1"
                     android:background="@drawable/edittext_layout"
                     android:ems="10"
                     android:hint="Option 6"
@@ -250,12 +260,12 @@
 
                 <com.google.android.material.floatingactionbutton.FloatingActionButton
                     android:id="@+id/fabDelete6"
-                    android:layout_marginStart="5dp"
-                    android:visibility="gone"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
+                    android:layout_marginStart="5dp"
                     android:src="@drawable/ic_baseline_delete_24"
                     android:tint="@android:color/holo_red_light"
+                    android:visibility="gone"
                     app:fabCustomSize="50dp" />
             </LinearLayout>
 
@@ -268,8 +278,8 @@
                     android:id="@+id/eTOption7"
                     android:layout_width="0dp"
                     android:layout_height="50dp"
-                    android:layout_weight="1"
                     android:layout_marginBottom="10dp"
+                    android:layout_weight="1"
                     android:background="@drawable/edittext_layout"
                     android:ems="10"
                     android:hint="Option 7"
@@ -284,12 +294,12 @@
 
                 <com.google.android.material.floatingactionbutton.FloatingActionButton
                     android:id="@+id/fabDelete7"
-                    android:layout_marginStart="5dp"
-                    android:visibility="gone"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
+                    android:layout_marginStart="5dp"
                     android:src="@drawable/ic_baseline_delete_24"
                     android:tint="@android:color/holo_red_light"
+                    android:visibility="gone"
                     app:fabCustomSize="50dp" />
             </LinearLayout>
 
@@ -302,8 +312,8 @@
                     android:id="@+id/eTOption8"
                     android:layout_width="0dp"
                     android:layout_height="50dp"
-                    android:layout_weight="1"
                     android:layout_marginBottom="10dp"
+                    android:layout_weight="1"
                     android:background="@drawable/edittext_layout"
                     android:ems="10"
                     android:hint="Option 8"
@@ -318,12 +328,12 @@
 
                 <com.google.android.material.floatingactionbutton.FloatingActionButton
                     android:id="@+id/fabDelete8"
-                    android:layout_marginStart="5dp"
-                    android:visibility="gone"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
+                    android:layout_marginStart="5dp"
                     android:src="@drawable/ic_baseline_delete_24"
                     android:tint="@android:color/holo_red_light"
+                    android:visibility="gone"
                     app:fabCustomSize="50dp" />
             </LinearLayout>
 
@@ -336,8 +346,8 @@
                     android:id="@+id/eTOption9"
                     android:layout_width="0dp"
                     android:layout_height="50dp"
-                    android:layout_weight="1"
                     android:layout_marginBottom="10dp"
+                    android:layout_weight="1"
                     android:background="@drawable/edittext_layout"
                     android:ems="10"
                     android:hint="Option 9"
@@ -352,12 +362,12 @@
 
                 <com.google.android.material.floatingactionbutton.FloatingActionButton
                     android:id="@+id/fabDelete9"
-                    android:layout_marginStart="5dp"
-                    android:visibility="gone"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
+                    android:layout_marginStart="5dp"
                     android:src="@drawable/ic_baseline_delete_24"
                     android:tint="@android:color/holo_red_light"
+                    android:visibility="gone"
                     app:fabCustomSize="50dp" />
             </LinearLayout>
 
@@ -370,8 +380,8 @@
                     android:id="@+id/eTOption10"
                     android:layout_width="0dp"
                     android:layout_height="50dp"
-                    android:layout_weight="1"
                     android:layout_marginBottom="10dp"
+                    android:layout_weight="1"
                     android:background="@drawable/edittext_layout"
                     android:ems="10"
                     android:hint="Option 10"
@@ -386,12 +396,12 @@
 
                 <com.google.android.material.floatingactionbutton.FloatingActionButton
                     android:id="@+id/fabDelete10"
-                    android:layout_marginStart="5dp"
-                    android:visibility="gone"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
+                    android:layout_marginStart="5dp"
                     android:src="@drawable/ic_baseline_delete_24"
                     android:tint="@android:color/holo_red_light"
+                    android:visibility="gone"
                     app:fabCustomSize="50dp" />
             </LinearLayout>
 
