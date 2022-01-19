@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.os.Bundle;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -14,10 +15,17 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.ArrayList;
+import java.util.Date;
 
 public class NewPollActivity extends AppCompatActivity {
     Button btnAddOption, btnRemoveOption;
     FloatingActionButton btnSavePoll;
+    EditText Question;
     EditText Option[] = new EditText[11];
     FloatingActionButton Delete[] = new FloatingActionButton[11];
     Integer optionCount = 2;
@@ -30,7 +38,7 @@ public class NewPollActivity extends AppCompatActivity {
         btnAddOption = findViewById(R.id.btnAddOption);
         btnRemoveOption = findViewById(R.id.btnRemoveOption);
         btnSavePoll = findViewById(R.id.fabSavePoll);
-
+        Question = findViewById(R.id.eTQuestion);
         Option[1] = findViewById(R.id.eTOption1);
         Option[2] = findViewById(R.id.eTOption2);
         Option[3] = findViewById(R.id.eTOption3);
@@ -57,10 +65,15 @@ public class NewPollActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Option[++optionCount].setVisibility(View.VISIBLE);
                 Delete[optionCount].setVisibility(View.VISIBLE);
-                if (optionCount > 2) btnRemoveOption.setEnabled(true);
+//                if (optionCount > 2) btnRemoveOption.setEnabled(true);
                 if (optionCount >= 10) btnAddOption.setEnabled(false);
-                if(optionCount > 0)
-                    findViewById(R.id.tvNoOptions).setVisibility(View.GONE);
+                if(optionCount <= 2) {
+                    Delete[1].setEnabled(false);
+                    Delete[2].setEnabled(false);
+                } else {
+                    Delete[1].setEnabled(true);
+                    Delete[2].setEnabled(true);
+                }
                 if(optionCount>=2)
                     btnSavePoll.setEnabled(true);
             }
@@ -71,8 +84,6 @@ public class NewPollActivity extends AppCompatActivity {
                 Option[optionCount].setVisibility(View.GONE);
                 Delete[optionCount--].setVisibility(View.GONE);
                 if (optionCount < 10) btnAddOption.setEnabled(true);
-                if (optionCount <= 2) btnRemoveOption.setEnabled(false);
-
             }
         });
         Delete[1].setOnClickListener(new View.OnClickListener() {
@@ -86,10 +97,10 @@ public class NewPollActivity extends AppCompatActivity {
                 Option[optionCount].setVisibility(View.GONE);
                 Delete[optionCount--].setVisibility(View.GONE);
                 if (optionCount < 10) btnAddOption.setEnabled(true);
-                if(optionCount == 0)
-                    findViewById(R.id.tvNoOptions).setVisibility(View.VISIBLE);
-                if(optionCount < 2)
-                    btnSavePoll.setEnabled(false);
+                if(optionCount <= 2) {
+                    Delete[1].setEnabled(false);
+                    Delete[2].setEnabled(false);
+                }
             }
         });
         Delete[2].setOnClickListener(new View.OnClickListener() {
@@ -103,8 +114,10 @@ public class NewPollActivity extends AppCompatActivity {
                 Option[optionCount].setVisibility(View.GONE);
                 Delete[optionCount--].setVisibility(View.GONE);
                 if (optionCount < 10) btnAddOption.setEnabled(true);
-                if(optionCount < 2)
-                    btnSavePoll.setEnabled(false);
+                if(optionCount <= 2) {
+                    Delete[1].setEnabled(false);
+                    Delete[2].setEnabled(false);
+                }
             }
         });
         Delete[3].setOnClickListener(new View.OnClickListener() {
@@ -117,6 +130,10 @@ public class NewPollActivity extends AppCompatActivity {
                 Option[optionCount].setText(null, TextView.BufferType.EDITABLE);
                 Option[optionCount].setVisibility(View.GONE);
                 Delete[optionCount--].setVisibility(View.GONE);
+                if(optionCount <= 2) {
+                    Delete[1].setEnabled(false);
+                    Delete[2].setEnabled(false);
+                }
                 if (optionCount < 10) btnAddOption.setEnabled(true);
             }
         });
@@ -130,6 +147,10 @@ public class NewPollActivity extends AppCompatActivity {
                 Option[optionCount].setText(null, TextView.BufferType.EDITABLE);
                 Option[optionCount].setVisibility(View.GONE);
                 Delete[optionCount--].setVisibility(View.GONE);
+                if(optionCount <= 2) {
+                    Delete[1].setEnabled(false);
+                    Delete[2].setEnabled(false);
+                }
                 if (optionCount < 10) btnAddOption.setEnabled(true);
             }
         });
@@ -143,6 +164,10 @@ public class NewPollActivity extends AppCompatActivity {
                 Option[optionCount].setText(null, TextView.BufferType.EDITABLE);
                 Option[optionCount].setVisibility(View.GONE);
                 Delete[optionCount--].setVisibility(View.GONE);
+                if(optionCount <= 2) {
+                    Delete[1].setEnabled(false);
+                    Delete[2].setEnabled(false);
+                }
                 if (optionCount < 10) btnAddOption.setEnabled(true);
             }
         });
@@ -156,6 +181,10 @@ public class NewPollActivity extends AppCompatActivity {
                 Option[optionCount].setText(null, TextView.BufferType.EDITABLE);
                 Option[optionCount].setVisibility(View.GONE);
                 Delete[optionCount--].setVisibility(View.GONE);
+                if(optionCount <= 2) {
+                    Delete[1].setEnabled(false);
+                    Delete[2].setEnabled(false);
+                }
                 if (optionCount < 10) btnAddOption.setEnabled(true);
             }
         });
@@ -169,6 +198,10 @@ public class NewPollActivity extends AppCompatActivity {
                 Option[optionCount].setText(null, TextView.BufferType.EDITABLE);
                 Option[optionCount].setVisibility(View.GONE);
                 Delete[optionCount--].setVisibility(View.GONE);
+                if(optionCount <= 2) {
+                    Delete[1].setEnabled(false);
+                    Delete[2].setEnabled(false);
+                }
                 if (optionCount < 10) btnAddOption.setEnabled(true);
             }
         });
@@ -182,6 +215,10 @@ public class NewPollActivity extends AppCompatActivity {
                 Option[optionCount].setText(null, TextView.BufferType.EDITABLE);
                 Option[optionCount].setVisibility(View.GONE);
                 Delete[optionCount--].setVisibility(View.GONE);
+                if(optionCount <= 2) {
+                    Delete[1].setEnabled(false);
+                    Delete[2].setEnabled(false);
+                }
                 if (optionCount < 10) btnAddOption.setEnabled(true);
             }
         });
@@ -195,6 +232,10 @@ public class NewPollActivity extends AppCompatActivity {
                 Option[optionCount].setText(null, TextView.BufferType.EDITABLE);
                 Option[optionCount].setVisibility(View.GONE);
                 Delete[optionCount--].setVisibility(View.GONE);
+                if(optionCount <= 2) {
+                    Delete[1].setEnabled(false);
+                    Delete[2].setEnabled(false);
+                }
                 if (optionCount < 10) btnAddOption.setEnabled(true);
             }
         });
@@ -204,13 +245,37 @@ public class NewPollActivity extends AppCompatActivity {
                 Option[optionCount].setText(null, TextView.BufferType.EDITABLE);
                 Option[optionCount].setVisibility(View.GONE);
                 Delete[optionCount--].setVisibility(View.GONE);
+                if(optionCount <= 2) {
+                    Delete[1].setEnabled(false);
+                    Delete[2].setEnabled(false);
+                }
                 if (optionCount < 10) btnAddOption.setEnabled(true);
             }
         });
         btnSavePoll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(NewPollActivity.this, "Your poll was saved !",Toast.LENGTH_SHORT).show();
+                ArrayList<String> Options = new ArrayList<String>();
+                String ques = null;
+                String createdBy = FirebaseAuth.getInstance().getUid();
+                String createdOn = String.valueOf(new Date().getTime());
+                if(Question.getText() != null && Question.getText().toString().trim().length()!=0)
+                    ques = Question.getText().toString().trim();
+                for(int i=1; i<=optionCount; i++) {
+                    if(Option[i].getText() == null)
+                        continue;
+                    String optionText = Option[i].getText().toString().trim();
+                    if(optionText.length() == 0)
+                        continue;
+                    Options.add(optionText);
+                }
+                if(ques != null && Options.size()>=2) {
+                    Poll poll = new Poll(ques,createdBy,createdOn,Options);
+                    MainActivity.dbRef.child("Polls").child(createdOn).setValue(poll);
+                } else {
+                    Toast.makeText(NewPollActivity.this, "Error",Toast.LENGTH_LONG).show();
+                }
+//                Toast.makeText(NewPollActivity.this, "Your poll was saved !",Toast.LENGTH_SHORT).show();
                 NewPollActivity.this.finish();
             }
         });
