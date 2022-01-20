@@ -86,6 +86,41 @@ public class NewPollActivity extends AppCompatActivity {
                 if (optionCount < 10) btnAddOption.setEnabled(true);
             }
         });
+        btnSavePoll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ArrayList<String> Options = new ArrayList<String>();
+                String ques = null;
+                String createdBy = FirebaseAuth.getInstance().getUid();
+                String createdOn = String.valueOf(new Date().getTime());
+                if(Question.getText() != null && Question.getText().toString().trim().length()!=0)
+                    ques = Question.getText().toString().trim();
+                for(int i=1; i<=optionCount; i++) {
+                    if(Option[i].getText() == null)
+                        continue;
+                    String optionText = Option[i].getText().toString().trim();
+                    if(optionText.length() == 0)
+                        continue;
+                    Options.add(optionText);
+                }
+                if(ques != null && Options.size()>=2) {
+                    Poll poll = new Poll(ques,createdBy,createdOn,Options);
+                    MainActivity.dbRef.child("Polls").child(createdOn).setValue(poll);
+                } else {
+                    Toast.makeText(NewPollActivity.this, "Error",Toast.LENGTH_LONG).show();
+                }
+//                Toast.makeText(NewPollActivity.this, "Your poll was saved !",Toast.LENGTH_SHORT).show();
+                NewPollActivity.this.finish();
+            }
+        });
+
+
+
+
+
+
+
+
         Delete[1].setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -250,33 +285,6 @@ public class NewPollActivity extends AppCompatActivity {
                     Delete[2].setEnabled(false);
                 }
                 if (optionCount < 10) btnAddOption.setEnabled(true);
-            }
-        });
-        btnSavePoll.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                ArrayList<String> Options = new ArrayList<String>();
-                String ques = null;
-                String createdBy = FirebaseAuth.getInstance().getUid();
-                String createdOn = String.valueOf(new Date().getTime());
-                if(Question.getText() != null && Question.getText().toString().trim().length()!=0)
-                    ques = Question.getText().toString().trim();
-                for(int i=1; i<=optionCount; i++) {
-                    if(Option[i].getText() == null)
-                        continue;
-                    String optionText = Option[i].getText().toString().trim();
-                    if(optionText.length() == 0)
-                        continue;
-                    Options.add(optionText);
-                }
-                if(ques != null && Options.size()>=2) {
-                    Poll poll = new Poll(ques,createdBy,createdOn,Options);
-                    MainActivity.dbRef.child("Polls").child(createdOn).setValue(poll);
-                } else {
-                    Toast.makeText(NewPollActivity.this, "Error",Toast.LENGTH_LONG).show();
-                }
-//                Toast.makeText(NewPollActivity.this, "Your poll was saved !",Toast.LENGTH_SHORT).show();
-                NewPollActivity.this.finish();
             }
         });
     }

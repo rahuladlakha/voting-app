@@ -4,36 +4,49 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.RecyclerView;
 
-public class PollsAdapter extends ArrayAdapter<Poll> {
+import java.util.ArrayList;
+
+public class PollsAdapter extends RecyclerView.Adapter<PollsAdapter.viewHolder> {
+
+    ArrayList<Poll> pollArrayList;
     Context context;
-    public PollsAdapter(Context c){
-        super(c,R.layout.poll,R.id.tvQuestion);
-        this.context = c;
-    }
 
-    @Override
-    public int getCount() {
-        return subjects.size();
+    public PollsAdapter(ArrayList<Poll> pollArrayList, Context context) {
+        this.pollArrayList = pollArrayList;
+        this.context = context;
     }
 
     @NonNull
     @Override
-    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-        LayoutInflater layoutInflater = (LayoutInflater) context.getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View v = layoutInflater.inflate(R.layout.poll,parent,false);
-        TextView txt = v.findViewById(R.id.tvQuestion);
-        TextView des = v.findViewById(R.id.pendingCardsTextview);
-        txt.setText(subjects.get(position));
-        int cardCount = numCards.get(subjects.get(position)).size();
-        if (cardCount != 0 )
-            des.setText(Integer.toString(cardCount));
-        else des.setVisibility(View.INVISIBLE);
-        return v;
+    public viewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(context).inflate(R.layout.poll, parent, false);
+        return new viewHolder(view);
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull viewHolder holder, int position) {
+        Poll poll = pollArrayList.get(position);
+
+        holder.textView.setText(poll.getQuestion());
+    }
+
+    @Override
+    public int getItemCount() {
+        return pollArrayList.size();
+    }
+
+    public class viewHolder extends RecyclerView.ViewHolder {
+
+        TextView textView;
+
+        public viewHolder(@NonNull View itemView) {
+            super(itemView);
+            textView = itemView.findViewById(R.id.tvQuestion);
+        }
     }
 }

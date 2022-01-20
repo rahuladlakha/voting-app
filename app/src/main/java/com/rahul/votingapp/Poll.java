@@ -10,6 +10,8 @@ public class Poll implements Serializable {
     public ArrayList<Integer> optionsVotes;
     public ArrayList<String> options;
 
+    public Poll(){};
+
     public Poll(String question, String createdBy, String createdOn, ArrayList<String> options) {
         this.question = question;
         this.createdBy = createdBy;
