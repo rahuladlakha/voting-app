@@ -10,11 +10,13 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class HomeFragment extends Fragment {
     FloatingActionButton fabNewPoll;
+    ListView lvPolls;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -31,7 +33,9 @@ public class HomeFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        fabNewPoll = (FloatingActionButton) getActivity().findViewById(R.id.fabNewPoll);
+        fabNewPoll = getActivity().findViewById(R.id.fabNewPoll);
+        lvPolls = getActivity().findViewById(R.id.lvPolls);
+
         fabNewPoll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -44,5 +48,7 @@ public class HomeFragment extends Fragment {
                 });
             }
         });
+
+
     }
 }
