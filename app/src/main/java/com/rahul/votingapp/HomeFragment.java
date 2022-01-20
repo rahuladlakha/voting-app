@@ -47,34 +47,35 @@ public class HomeFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         fabNewPoll = getActivity().findViewById(R.id.fabNewPoll);
-        ArrayList<String> dummy = new ArrayList<>();
-        dummy.add("bhupa");
-        pollArrayList.add(new Poll("bhup","bhupi", "bhupu", dummy));
         rvPolls = getActivity().findViewById(R.id.rvPolls);
-        MainActivity.dbRef.addValueEventListener(new ValueEventListener() {
+        MainActivity.dbRef.child("Polls").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                Poll poll = new Poll();
+                ArrayList<Poll> tempPolls = new ArrayList<>();
                 for(DataSnapshot postSnapshot : snapshot.getChildren()) {
-                    Poll poll = postSnapshot.getValue(Poll.class);
-                    pollArrayList.add(poll);
-                    Toast.makeText(HomeFragment.this.getActivity(), "" + postSnapshot.getValue(Poll.class), Toast.LENGTH_LONG).show();
-                    adapter.notifyDataSetChanged();
+                    poll = postSnapshot.getValue(Poll.class);
+                    tempPolls.add(poll);
                 }
+                pollArrayList.clear();
+                pollArrayList.addAll(tempPolls);
+                adapter.notifyDataSetChanged();
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
             }
         });
 //        MainActivity.dbRef.child("Polls").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
 //            @Override
 //            public void onComplete(@NonNull Task<DataSnapshot> task) {
-//                pollArrayList.addAll(((HashMap)task.getResult().getValue()).values());
-//                Toast.makeText(HomeFragment.this.getActivity(), "" + pollArrayList, Toast.LENGTH_LONG).show();
-//                pollArrayList.remove(0);
-//                Toast.makeText(HomeFragment.this.getActivity(), "" + pollArrayList, Toast.LENGTH_LONG).show();
-//                adapter.notifyDataSetChanged();
+//                DataSnapshot snapshot = task.getResult();
+//                for(DataSnapshot postSnapshot : snapshot.getChildren()) {
+//                    Poll poll = postSnapshot.getValue(Poll.class);
+//                    pollArrayList.add(poll);
+//                    adapter.notifyDataSetChanged();
+//                }
+//                Toast.makeText(HomeFragment.this.getActivity(), ""+ pollArrayList, Toast.LENGTH_LONG).show();
 //            }
 //        });
         adapter = new PollsAdapter(pollArrayList, getContext());
