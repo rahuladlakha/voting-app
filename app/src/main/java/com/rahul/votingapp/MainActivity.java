@@ -54,8 +54,9 @@ public class MainActivity extends AppCompatActivity {
         if (intent.getAction() == Intent.ACTION_VIEW){
             String[] ar = intent.getData().toString().trim().split("/");
             String pollCode = ar[ar.length-1]; // Note that therre may be cases when pollCode was not even included in the link.
-            Toast.makeText(this, pollCode,Toast.LENGTH_LONG).show();
-
+            Intent in = new Intent(this, VoteActivity.class);
+            in.putExtra("POLL_CODE", pollCode);
+            startActivity(in);
         }
 
         dbRef = FirebaseDatabase.getInstance().getReference();
