@@ -59,173 +59,373 @@
             android:orientation="vertical"
             android:padding="10dp">
 
-            <EditText
-                android:id="@+id/eTOption1"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:background="@drawable/edittext_layout"
-                android:ems="10"
-                android:hint="Option 1"
-                android:inputType="textPersonName"
-                android:padding="4dp"
-                android:tag="1"
-                android:textSize="24sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent" />
+                android:orientation="horizontal">
 
-            <EditText
-                android:id="@+id/eTOption2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:background="@drawable/edittext_layout"
-                android:ems="10"
-                android:hint="Option 2"
-                android:inputType="textPersonName"
-                android:padding="4dp"
-                android:tag="2"
-                android:textSize="24sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent" />
+                <EditText
+                    android:id="@+id/eTOption1"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/edittext_layout"
+                    android:ems="10"
+                    android:hint="Option 1"
+                    android:inputType="textPersonName"
+                    android:padding="4dp"
+                    android:tag="1"
+                    android:textSize="24sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent" />
 
-            <EditText
-                android:id="@+id/eTOption3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:background="@drawable/edittext_layout"
-                android:ems="10"
-                android:hint="Option 3"
-                android:inputType="textPersonName"
-                android:padding="4dp"
-                android:tag="3"
-                android:textSize="24sp"
-                android:visibility="gone"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent" />
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/fabDelete1"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="5dp"
+                    android:backgroundTint="@color/transparent"
+                    android:elevation="0dp"
+                    android:enabled="false"
+                    android:src="@drawable/ic_baseline_delete_24"
+                    app:borderWidth="0dp"
+                    app:elevation="0dp"
+                    app:fabCustomSize="50dp" />
+            </LinearLayout>
 
-            <EditText
-                android:id="@+id/eTOption4"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:background="@drawable/edittext_layout"
-                android:ems="10"
-                android:hint="Option 4"
-                android:inputType="textPersonName"
-                android:padding="4dp"
-                android:tag="4"
-                android:textSize="24sp"
-                android:visibility="gone"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent" />
+                android:orientation="horizontal">
 
-            <EditText
-                android:id="@+id/eTOption5"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:background="@drawable/edittext_layout"
-                android:ems="10"
-                android:hint="Option 5"
-                android:inputType="textPersonName"
-                android:padding="4dp"
-                android:tag="5"
-                android:textSize="24sp"
-                android:visibility="gone"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent" />
+                <EditText
+                    android:id="@+id/eTOption2"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/edittext_layout"
+                    android:ems="10"
+                    android:hint="Option 2"
+                    android:inputType="textPersonName"
+                    android:padding="4dp"
+                    android:tag="2"
+                    android:textSize="24sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent" />
 
-            <EditText
-                android:id="@+id/eTOption6"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:background="@drawable/edittext_layout"
-                android:ems="10"
-                android:hint="Option 6"
-                android:inputType="textPersonName"
-                android:padding="4dp"
-                android:tag="6"
-                android:textSize="24sp"
-                android:visibility="gone"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent" />
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/fabDelete2"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="5dp"
+                    android:backgroundTint="@color/transparent"
+                    android:elevation="0dp"
+                    android:enabled="false"
+                    android:src="@drawable/ic_baseline_delete_24"
+                    app:borderWidth="0dp"
+                    app:elevation="0dp"
+                    app:fabCustomSize="50dp" />
+            </LinearLayout>
 
-            <EditText
-                android:id="@+id/eTOption7"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:background="@drawable/edittext_layout"
-                android:ems="10"
-                android:hint="Option 7"
-                android:inputType="textPersonName"
-                android:padding="4dp"
-                android:tag="7"
-                android:textSize="24sp"
-                android:visibility="gone"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent" />
+                android:orientation="horizontal">
 
-            <EditText
-                android:id="@+id/eTOption8"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:background="@drawable/edittext_layout"
-                android:ems="10"
-                android:hint="Option 8"
-                android:inputType="textPersonName"
-                android:padding="4dp"
-                android:tag="8"
-                android:textSize="24sp"
-                android:visibility="gone"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent" />
+                <EditText
+                    android:id="@+id/eTOption3"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/edittext_layout"
+                    android:ems="10"
+                    android:hint="Option 3"
+                    android:inputType="textPersonName"
+                    android:padding="4dp"
+                    android:tag="3"
+                    android:textSize="24sp"
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent" />
 
-            <EditText
-                android:id="@+id/eTOption9"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:background="@drawable/edittext_layout"
-                android:ems="10"
-                android:hint="Option 9"
-                android:inputType="textPersonName"
-                android:padding="4dp"
-                android:tag="9"
-                android:textSize="24sp"
-                android:visibility="gone"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent" />
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/fabDelete3"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="5dp"
+                    android:backgroundTint="@color/transparent"
+                    android:elevation="0dp"
+                    android:src="@drawable/ic_baseline_delete_24"
+                    android:visibility="gone"
+                    app:borderWidth="0dp"
+                    app:elevation="0dp"
+                    app:fabCustomSize="50dp" />
+            </LinearLayout>
 
-            <EditText
-                android:id="@+id/eTOption10"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:background="@drawable/edittext_layout"
-                android:ems="10"
-                android:hint="Option 10"
-                android:inputType="textPersonName"
-                android:padding="4dp"
-                android:tag="10"
-                android:textSize="24sp"
-                android:visibility="gone"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent" />
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/eTOption4"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/edittext_layout"
+                    android:ems="10"
+                    android:hint="Option 4"
+                    android:inputType="textPersonName"
+                    android:padding="4dp"
+                    android:tag="4"
+                    android:textSize="24sp"
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/fabDelete4"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="5dp"
+                    android:backgroundTint="@color/transparent"
+                    android:elevation="0dp"
+                    android:src="@drawable/ic_baseline_delete_24"
+                    android:visibility="gone"
+                    app:borderWidth="0dp"
+                    app:elevation="0dp"
+                    app:fabCustomSize="50dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/eTOption5"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/edittext_layout"
+                    android:ems="10"
+                    android:hint="Option 5"
+                    android:inputType="textPersonName"
+                    android:padding="4dp"
+                    android:tag="5"
+                    android:textSize="24sp"
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/fabDelete5"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="5dp"
+                    android:backgroundTint="@color/transparent"
+                    android:elevation="0dp"
+                    android:src="@drawable/ic_baseline_delete_24"
+                    android:visibility="gone"
+                    app:borderWidth="0dp"
+                    app:elevation="0dp"
+                    app:fabCustomSize="50dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/eTOption6"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/edittext_layout"
+                    android:ems="10"
+                    android:hint="Option 6"
+                    android:inputType="textPersonName"
+                    android:padding="4dp"
+                    android:tag="6"
+                    android:textSize="24sp"
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/fabDelete6"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="5dp"
+                    android:backgroundTint="@color/transparent"
+                    android:elevation="0dp"
+                    android:src="@drawable/ic_baseline_delete_24"
+                    android:visibility="gone"
+                    app:borderWidth="0dp"
+                    app:elevation="0dp"
+                    app:fabCustomSize="50dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/eTOption7"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/edittext_layout"
+                    android:ems="10"
+                    android:hint="Option 7"
+                    android:inputType="textPersonName"
+                    android:padding="4dp"
+                    android:tag="7"
+                    android:textSize="24sp"
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/fabDelete7"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="5dp"
+                    android:backgroundTint="@color/transparent"
+                    android:elevation="0dp"
+                    android:src="@drawable/ic_baseline_delete_24"
+                    android:visibility="gone"
+                    app:borderWidth="0dp"
+                    app:elevation="0dp"
+                    app:fabCustomSize="50dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/eTOption8"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/edittext_layout"
+                    android:ems="10"
+                    android:hint="Option 8"
+                    android:inputType="textPersonName"
+                    android:padding="4dp"
+                    android:tag="8"
+                    android:textSize="24sp"
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/fabDelete8"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="5dp"
+                    android:backgroundTint="@color/transparent"
+                    android:elevation="0dp"
+                    android:src="@drawable/ic_baseline_delete_24"
+                    android:visibility="gone"
+                    app:borderWidth="0dp"
+                    app:elevation="0dp"
+                    app:fabCustomSize="50dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/eTOption9"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/edittext_layout"
+                    android:ems="10"
+                    android:hint="Option 9"
+                    android:inputType="textPersonName"
+                    android:padding="4dp"
+                    android:tag="9"
+                    android:textSize="24sp"
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/fabDelete9"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="5dp"
+                    android:backgroundTint="@color/transparent"
+                    android:elevation="0dp"
+                    android:src="@drawable/ic_baseline_delete_24"
+                    android:visibility="gone"
+                    app:borderWidth="0dp"
+                    app:elevation="0dp"
+                    app:fabCustomSize="50dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/eTOption10"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/edittext_layout"
+                    android:ems="10"
+                    android:hint="Option 10"
+                    android:inputType="textPersonName"
+                    android:padding="4dp"
+                    android:tag="10"
+                    android:textSize="24sp"
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/fabDelete10"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="5dp"
+                    android:backgroundTint="@color/transparent"
+                    android:elevation="0dp"
+                    android:src="@drawable/ic_baseline_delete_24"
+                    android:visibility="gone"
+                    app:borderWidth="0dp"
+                    app:elevation="0dp"
+                    app:fabCustomSize="50dp" />
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -253,6 +453,7 @@
                     android:layout_marginBottom="10dp"
                     android:enabled="false"
                     android:text="Remove Option"
+                    android:visibility="gone"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
@@ -262,6 +463,7 @@
 
         </LinearLayout>
     </ScrollView>
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fabSavePoll"
         android:layout_width="50dp"
