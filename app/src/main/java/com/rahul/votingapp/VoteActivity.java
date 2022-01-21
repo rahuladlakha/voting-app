@@ -4,6 +4,11 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,12 +26,16 @@ public class VoteActivity extends AppCompatActivity {
 
     String pollCode = null;
     TextView tvQuesPoll;
+    ListView optionsListView = null;
+    ArrayAdapter<String> adapter = null;
+    int itemSelected = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vote);
 
+        optionsListView = findViewById(R.id.optionsListView);
         getSupportActionBar().setTitle("Cast your vote");
         tvQuesPoll = findViewById(R.id.tvQuesPoll);
 
@@ -40,6 +49,31 @@ public class VoteActivity extends AppCompatActivity {
                 for(DataSnapshot postSnapshot : snapshot.getChildren()) {
                     poll = postSnapshot.getValue(Poll.class);
                     tvQuesPoll.setText(poll.question);
+                    adapter = ArrayAdapter.createFromResource(VoteActivity.this,android.R.layout.simple_list_item_single_choice);
+                    optionsListView.setAdapter(adapter);
+                    optionsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                            optionsListView.setItemChecked(i,true);
+                            optionsListView.setSelection(i);
+                            adapterView.setSelection(i);
+                            adapter.notifyDataSetChanged();
+                        }
+                    });
+                    optionsListView.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                        @Override
+                        public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                            optionsListView.setItemChecked(i,true);
+                            optionsListView.setSelection(i);
+                            adapterView.setSelection(i);
+                            adapter.notifyDataSetChanged();
+                        }
+
+                        @Override
+                        public void onNothingSelected(AdapterView<?> adapterView) {
+
+                        }
+                    });
                 }
             }
 

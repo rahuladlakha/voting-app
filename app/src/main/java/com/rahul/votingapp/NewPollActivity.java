@@ -22,13 +22,32 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class NewPollActivity extends AppCompatActivity {
+public class NewPollActivity extends AppCompatActivity implements View.OnClickListener {
     Button btnAddOption, btnRemoveOption;
     FloatingActionButton btnSavePoll;
     EditText Question;
     EditText Option[] = new EditText[11];
     FloatingActionButton Delete[] = new FloatingActionButton[11];
     Integer optionCount = 2;
+
+
+    @Override
+    public void onClick(View v) {
+        int posToBeDeleted = optionCount;
+        for (int j = Integer.parseInt(v.getTag().toString()); j < optionCount; j++) {
+            String value = Option[j + 1].getText().toString();
+           // if (Option[j].getText() == null || Option[j].getText().toString().trim() == "")
+                Option[j].setText(value, TextView.BufferType.EDITABLE);
+        }
+        Option[optionCount].setText(null, TextView.BufferType.EDITABLE);
+        Option[optionCount].setVisibility(View.GONE);
+        Delete[optionCount--].setVisibility(View.GONE);
+        if (optionCount < 10) btnAddOption.setEnabled(true);
+        if (optionCount <= 2) {
+            Delete[1].setEnabled(false);
+            Delete[2].setEnabled(false);
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,14 +86,14 @@ public class NewPollActivity extends AppCompatActivity {
                 Delete[optionCount].setVisibility(View.VISIBLE);
 //                if (optionCount > 2) btnRemoveOption.setEnabled(true);
                 if (optionCount >= 10) btnAddOption.setEnabled(false);
-                if(optionCount <= 2) {
+                if (optionCount <= 2) {
                     Delete[1].setEnabled(false);
                     Delete[2].setEnabled(false);
                 } else {
                     Delete[1].setEnabled(true);
                     Delete[2].setEnabled(true);
                 }
-                if(optionCount>=2)
+                if (optionCount >= 2)
                     btnSavePoll.setEnabled(true);
             }
         });
@@ -93,200 +112,32 @@ public class NewPollActivity extends AppCompatActivity {
                 String ques = null;
                 String createdBy = FirebaseAuth.getInstance().getUid();
                 String createdOn = String.valueOf(new Date().getTime());
-                if(Question.getText() != null && Question.getText().toString().trim().length()!=0)
+                if (Question.getText() != null && Question.getText().toString().trim().length() != 0)
                     ques = Question.getText().toString().trim();
-                for(int i=1; i<=optionCount; i++) {
-                    if(Option[i].getText() == null)
+                for (int i = 1; i <= optionCount; i++) {
+                    if (Option[i].getText() == null)
                         continue;
                     String optionText = Option[i].getText().toString().trim();
-                    if(optionText.length() == 0)
+                    if (optionText.length() == 0)
                         continue;
                     Options.add(optionText);
                 }
-                if(ques != null && Options.size()>=2) {
-                    Poll poll = new Poll(ques,createdBy,createdOn,Options);
+                if (ques != null && Options.size() >= 2) {
+                    Poll poll = new Poll(ques, createdBy, createdOn, Options);
                     MainActivity.dbRef.child("Polls").child(createdOn).setValue(poll);
+                    MainActivity.thisUserDBRef.child("Created Polls").child("Poll Id").setValue(createdOn);
                 } else {
-                    Toast.makeText(NewPollActivity.this, "Error",Toast.LENGTH_LONG).show();
+                    Toast.makeText(NewPollActivity.this, "Error", Toast.LENGTH_LONG).show();
                 }
 //                Toast.makeText(NewPollActivity.this, "Your poll was saved !",Toast.LENGTH_SHORT).show();
                 NewPollActivity.this.finish();
             }
         });
 
+        //Adds onClickListener to all delete fabs all in a single loop
+        for (int i = 1; i <= 10; i++) Delete[i].setOnClickListener(this);
 
 
-
-
-
-
-
-        Delete[1].setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                for(int j = 1; j<optionCount; j++) {
-                    String value = Option[j+1].getText().toString();
-                    Option[j].setText(value, TextView.BufferType.EDITABLE);
-                }
-                Option[optionCount].setText(null, TextView.BufferType.EDITABLE);
-                Option[optionCount].setVisibility(View.GONE);
-                Delete[optionCount--].setVisibility(View.GONE);
-                if (optionCount < 10) btnAddOption.setEnabled(true);
-                if(optionCount <= 2) {
-                    Delete[1].setEnabled(false);
-                    Delete[2].setEnabled(false);
-                }
-            }
-        });
-        Delete[2].setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                for(int j = 2; j<optionCount; j++) {
-                    String value = Option[j+1].getText().toString();
-                    Option[j].setText(value, TextView.BufferType.EDITABLE);
-                }
-                Option[optionCount].setText(null, TextView.BufferType.EDITABLE);
-                Option[optionCount].setVisibility(View.GONE);
-                Delete[optionCount--].setVisibility(View.GONE);
-                if (optionCount < 10) btnAddOption.setEnabled(true);
-                if(optionCount <= 2) {
-                    Delete[1].setEnabled(false);
-                    Delete[2].setEnabled(false);
-                }
-            }
-        });
-        Delete[3].setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                for(int j = 3; j<optionCount; j++) {
-                    String value = Option[j+1].getText().toString();
-                    Option[j].setText(value, TextView.BufferType.EDITABLE);
-                }
-                Option[optionCount].setText(null, TextView.BufferType.EDITABLE);
-                Option[optionCount].setVisibility(View.GONE);
-                Delete[optionCount--].setVisibility(View.GONE);
-                if(optionCount <= 2) {
-                    Delete[1].setEnabled(false);
-                    Delete[2].setEnabled(false);
-                }
-                if (optionCount < 10) btnAddOption.setEnabled(true);
-            }
-        });
-        Delete[4].setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                for(int j = 4; j<optionCount; j++) {
-                    String value = Option[j+1].getText().toString();
-                    Option[j].setText(value, TextView.BufferType.EDITABLE);
-                }
-                Option[optionCount].setText(null, TextView.BufferType.EDITABLE);
-                Option[optionCount].setVisibility(View.GONE);
-                Delete[optionCount--].setVisibility(View.GONE);
-                if(optionCount <= 2) {
-                    Delete[1].setEnabled(false);
-                    Delete[2].setEnabled(false);
-                }
-                if (optionCount < 10) btnAddOption.setEnabled(true);
-            }
-        });
-        Delete[5].setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                for(int j = 5; j<optionCount; j++) {
-                    String value = Option[j+1].getText().toString();
-                    Option[j].setText(value, TextView.BufferType.EDITABLE);
-                }
-                Option[optionCount].setText(null, TextView.BufferType.EDITABLE);
-                Option[optionCount].setVisibility(View.GONE);
-                Delete[optionCount--].setVisibility(View.GONE);
-                if(optionCount <= 2) {
-                    Delete[1].setEnabled(false);
-                    Delete[2].setEnabled(false);
-                }
-                if (optionCount < 10) btnAddOption.setEnabled(true);
-            }
-        });
-        Delete[6].setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                for(int j = 6; j<optionCount; j++) {
-                    String value = Option[j+1].getText().toString();
-                    Option[j].setText(value, TextView.BufferType.EDITABLE);
-                }
-                Option[optionCount].setText(null, TextView.BufferType.EDITABLE);
-                Option[optionCount].setVisibility(View.GONE);
-                Delete[optionCount--].setVisibility(View.GONE);
-                if(optionCount <= 2) {
-                    Delete[1].setEnabled(false);
-                    Delete[2].setEnabled(false);
-                }
-                if (optionCount < 10) btnAddOption.setEnabled(true);
-            }
-        });
-        Delete[7].setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                for(int j = 7; j<optionCount; j++) {
-                    String value = Option[j+1].getText().toString();
-                    Option[j].setText(value, TextView.BufferType.EDITABLE);
-                }
-                Option[optionCount].setText(null, TextView.BufferType.EDITABLE);
-                Option[optionCount].setVisibility(View.GONE);
-                Delete[optionCount--].setVisibility(View.GONE);
-                if(optionCount <= 2) {
-                    Delete[1].setEnabled(false);
-                    Delete[2].setEnabled(false);
-                }
-                if (optionCount < 10) btnAddOption.setEnabled(true);
-            }
-        });
-        Delete[8].setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                for(int j = 8; j<optionCount; j++) {
-                    String value = Option[j+1].getText().toString();
-                    Option[j].setText(value, TextView.BufferType.EDITABLE);
-                }
-                Option[optionCount].setText(null, TextView.BufferType.EDITABLE);
-                Option[optionCount].setVisibility(View.GONE);
-                Delete[optionCount--].setVisibility(View.GONE);
-                if(optionCount <= 2) {
-                    Delete[1].setEnabled(false);
-                    Delete[2].setEnabled(false);
-                }
-                if (optionCount < 10) btnAddOption.setEnabled(true);
-            }
-        });
-        Delete[9].setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                for(int j = 9; j<optionCount; j++) {
-                    String value = Option[j+1].getText().toString();
-                    Option[j].setText(value, TextView.BufferType.EDITABLE);
-                }
-                Option[optionCount].setText(null, TextView.BufferType.EDITABLE);
-                Option[optionCount].setVisibility(View.GONE);
-                Delete[optionCount--].setVisibility(View.GONE);
-                if(optionCount <= 2) {
-                    Delete[1].setEnabled(false);
-                    Delete[2].setEnabled(false);
-                }
-                if (optionCount < 10) btnAddOption.setEnabled(true);
-            }
-        });
-        Delete[10].setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Option[optionCount].setText(null, TextView.BufferType.EDITABLE);
-                Option[optionCount].setVisibility(View.GONE);
-                Delete[optionCount--].setVisibility(View.GONE);
-                if(optionCount <= 2) {
-                    Delete[1].setEnabled(false);
-                    Delete[2].setEnabled(false);
-                }
-                if (optionCount < 10) btnAddOption.setEnabled(true);
-            }
-        });
+//
     }
-
 }

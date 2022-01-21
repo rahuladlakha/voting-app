@@ -23,8 +23,10 @@ import java.net.URL;
 public class MainActivity extends AppCompatActivity {
     public static String username = null;
     public static String userEmail = null;
+    public static String userId = null;
     public static Uri imageUrl = null;
     static DatabaseReference dbRef;
+    static DatabaseReference thisUserDBRef;
 
     public void signout(View view){
         //Toast.makeText(this, "tapped",Toast.LENGTH_SHORT).show();
@@ -38,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
             username = user.getDisplayName();
             userEmail = user.getEmail();
             imageUrl = user.getPhotoUrl();
+            userId = user.getUid();
         } else {
             Intent intent = new Intent(this, SignInActivity.class);
             startActivity(intent);
@@ -61,6 +64,9 @@ public class MainActivity extends AppCompatActivity {
 
         dbRef = FirebaseDatabase.getInstance().getReference();
         getSignInInfo();
+        thisUserDBRef = dbRef.child("Users").child(userId);
+        thisUserDBRef.child("Name").setValue(username);
+        thisUserDBRef.child("Email").setValue(userEmail);
 
         ((BottomNavigationView)findViewById(R.id.bottomNavigationView))
                 .setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
