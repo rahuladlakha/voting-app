@@ -48,6 +48,17 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // The code below makes the app open through links and also retrieve the poll code from link
+        Intent intent = getIntent();
+        if (intent.getAction() == Intent.ACTION_VIEW){
+            String[] ar = intent.getData().toString().trim().split("/");
+            String pollCode = ar[ar.length-1]; // Note that therre may be cases when pollCode was not even included in the link.
+            Intent in = new Intent(this, VoteActivity.class);
+            in.putExtra("POLL_CODE", pollCode);
+            startActivity(in);
+        }
+
         dbRef = FirebaseDatabase.getInstance().getReference();
         getSignInInfo();
 
