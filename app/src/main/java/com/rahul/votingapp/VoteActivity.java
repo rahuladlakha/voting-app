@@ -81,14 +81,18 @@ public class VoteActivity extends AppCompatActivity {
                 query.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        if (!snapshot.exists()) {
-                            poll.optionsVotes.set(itemSelected,poll.optionsVotes.get(itemSelected)+1);
-                            MainActivity.dbRef.child("Polls").child(poll.createdOn).child("optionsVotes").setValue(poll.optionsVotes);
-                            MainActivity.thisUserDBRef.child("votedPolls").child(poll.createdOn).child("voted").setValue(poll.createdOn);
+                        if(poll.open) {
+                            if (!snapshot.exists()) {
+                                poll.optionsVotes.set(itemSelected,poll.optionsVotes.get(itemSelected)+1);
+                                MainActivity.dbRef.child("Polls").child(poll.createdOn).child("optionsVotes").setValue(poll.optionsVotes);
+                                MainActivity.thisUserDBRef.child("votedPolls").child(poll.createdOn).child("voted").setValue(poll.createdOn);
+                            } else {
+                                Toast.makeText(VoteActivity.this, "Already voted bruh!", Toast.LENGTH_SHORT).show();
+                            }
+                            finish();
                         } else {
-                            Toast.makeText(VoteActivity.this, "Already voted bruh!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(VoteActivity.this, "Poll has been closed by the owner.", Toast.LENGTH_LONG).show();
                         }
-                        finish();
                     }
 
                     @Override

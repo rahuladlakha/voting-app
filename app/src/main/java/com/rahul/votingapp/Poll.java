@@ -7,6 +7,7 @@ public class Poll implements Serializable {
     public String question;
     public String createdBy;
     public String createdOn;
+    public Boolean open;
     public ArrayList<Integer> optionsVotes;
     public ArrayList<String> options;
 
@@ -16,6 +17,7 @@ public class Poll implements Serializable {
         this.question = question;
         this.createdBy = createdBy;
         this.createdOn = createdOn;
+        open = true;
         optionsVotes = new ArrayList<Integer>();
         for(int i=0; i<options.size(); i++) {
             optionsVotes.add(0);
@@ -45,6 +47,14 @@ public class Poll implements Serializable {
 
     public void setCreatedOn(String createdOn) {
         this.createdOn = createdOn;
+    }
+
+    public Boolean getOpen() {
+        return open;
+    }
+
+    public void setOpen(Boolean open) {
+        this.open = open;
     }
 
     public ArrayList<Integer> getOptionsVotes() {

@@ -1,13 +1,8 @@
 package com.rahul.votingapp;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
 import android.os.Bundle;
-import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -16,8 +11,6 @@ import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -125,19 +118,23 @@ public class NewPollActivity extends AppCompatActivity implements View.OnClickLi
                 if (ques != null && Options.size() >= 2) {
                     Poll poll = new Poll(ques, createdBy, createdOn, Options);
                     MainActivity.dbRef.child("Polls").child(createdOn).setValue(poll);
-                    MainActivity.thisUserDBRef.child("Created Polls").child("Poll Id").setValue(createdOn);
+                    MainActivity.thisUserDBRef.child("Created Polls").child(createdOn).child("Poll Id").setValue(createdOn);
+                    openDialog(createdOn);
                 } else {
                     Toast.makeText(NewPollActivity.this, "Error", Toast.LENGTH_LONG).show();
                 }
 //                Toast.makeText(NewPollActivity.this, "Your poll was saved !",Toast.LENGTH_SHORT).show();
-                NewPollActivity.this.finish();
+//                NewPollActivity.this.finish();
             }
         });
 
         //Adds onClickListener to all delete fabs all in a single loop
         for (int i = 1; i <= 10; i++) Delete[i].setOnClickListener(this);
-
-
 //
+    }
+
+    public void openDialog(String createdOn) {
+        SharePollLink sharePollLink = new SharePollLink(createdOn);
+        sharePollLink.show(getSupportFragmentManager(),createdOn);
     }
 }
