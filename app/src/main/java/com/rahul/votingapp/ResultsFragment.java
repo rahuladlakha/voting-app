@@ -50,7 +50,7 @@ public class ResultsFragment extends Fragment {
                 ArrayList<Poll> tempPolls = new ArrayList<>();
                 for(DataSnapshot postSnapshot : snapshot.getChildren()) {
                     poll = postSnapshot.getValue(Poll.class);
-                    if(poll.createdBy.equals(userId) && !poll.getOpen())
+                    if((poll.createdBy.equals(userId) && !poll.getOpen()))
                         tempPolls.add(poll);
                 }
                 pollArrayList.clear();

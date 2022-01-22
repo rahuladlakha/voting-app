@@ -2,6 +2,7 @@ package com.rahul.votingapp;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -52,7 +53,9 @@ public class PollsResAdapter extends RecyclerView.Adapter<PollsResAdapter.viewHo
         holder.button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context, "ResultActivity is in progress.", Toast.LENGTH_SHORT).show();
+                Intent resIntent = new Intent(context, FinalResultActivity.class);
+                resIntent.putExtra("PollCode", poll.createdOn);
+                context.startActivity(resIntent);
             }
         });
     }
