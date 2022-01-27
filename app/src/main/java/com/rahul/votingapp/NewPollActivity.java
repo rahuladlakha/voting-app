@@ -2,6 +2,7 @@ package com.rahul.votingapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -119,6 +120,9 @@ public class NewPollActivity extends AppCompatActivity implements View.OnClickLi
                     Poll poll = new Poll(ques, createdBy, createdOn, Options);
                     MainActivity.dbRef.child("Polls").child(createdOn).setValue(poll);
                     MainActivity.thisUserDBRef.child("Created Polls").child(createdOn).child("Poll Id").setValue(createdOn);
+                    Intent intent = new Intent(NewPollActivity.this, VoteActivity.class);
+                    intent.putExtra("POLL_CODE",createdOn);
+                    startActivity(intent);
                     openDialog(createdOn);
                 } else {
                     Toast.makeText(NewPollActivity.this, "Error", Toast.LENGTH_LONG).show();

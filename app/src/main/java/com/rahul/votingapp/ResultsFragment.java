@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,10 +22,12 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class ResultsFragment extends Fragment {
     RecyclerView rvResPolls;
     public ArrayList<Poll> pollArrayList = new ArrayList<>();
+    public ArrayList<String> pollCodeArrayList = new ArrayList<>();
     public PollsResAdapter adapter;
 
     @Override
@@ -43,6 +46,24 @@ public class ResultsFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         rvResPolls = getActivity().findViewById(R.id.rvResPolls);
+
+        MainActivity.dbRef.child("Users").child(userId).child("votedPolls").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                String pollCode = null;
+                ArrayList<String> tempPollCodes = new ArrayList<>();
+                for(DataSnapshot postSnapshot : snapshot.getChildren()) {
+                    pollCode = postSnapshot.getValue().toString();
+                    tempPollCodes.add(pollCode);
+                }
+                pollCodeArrayList.clear();
+                pollCodeArrayList.addAll(tempPollCodes);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        });
         MainActivity.dbRef.child("Polls").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -50,7 +71,7 @@ public class ResultsFragment extends Fragment {
                 ArrayList<Poll> tempPolls = new ArrayList<>();
                 for(DataSnapshot postSnapshot : snapshot.getChildren()) {
                     poll = postSnapshot.getValue(Poll.class);
-                    if((poll.createdBy.equals(userId) && !poll.getOpen()))
+                    if(pollCodeArrayList.contains(poll.createdOn))
                         tempPolls.add(poll);
                 }
                 pollArrayList.clear();

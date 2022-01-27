@@ -77,7 +77,10 @@ public class VoteActivity extends AppCompatActivity {
         btnVote.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Query query = MainActivity.thisUserDBRef.child("votedPolls").orderByChild("voted").equalTo(pollCode);
+                btnVote.setEnabled(false);
+//                poll.optionsVotes.set(itemSelected,poll.optionsVotes.get(itemSelected)+1);
+//                MainActivity.dbRef.child("Polls").child(poll.createdOn).child("optionsVotes").setValue(poll.optionsVotes);
+                Query query = MainActivity.thisUserDBRef.child("votedPolls").equalTo(pollCode);
                 query.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -85,7 +88,7 @@ public class VoteActivity extends AppCompatActivity {
                             if (!snapshot.exists()) {
                                 poll.optionsVotes.set(itemSelected,poll.optionsVotes.get(itemSelected)+1);
                                 MainActivity.dbRef.child("Polls").child(poll.createdOn).child("optionsVotes").setValue(poll.optionsVotes);
-                                MainActivity.thisUserDBRef.child("votedPolls").child(poll.createdOn).child("voted").setValue(poll.createdOn);
+                                MainActivity.thisUserDBRef.child("votedPolls").child(poll.createdOn).setValue(poll.createdOn);
                             } else {
                                 Toast.makeText(VoteActivity.this, "Already voted bruh!", Toast.LENGTH_SHORT).show();
                             }
