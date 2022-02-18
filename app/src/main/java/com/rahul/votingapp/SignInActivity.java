@@ -32,7 +32,7 @@ public class SignInActivity extends AppCompatActivity {
     SignInButton btnSignIn;
     private static GoogleSignInClient mGoogleSignInClient;
     public static final int RC_SIGN_IN = 123;
-    private static FirebaseAuth mAuth;
+    static FirebaseAuth mAuth;
     public static void signout(){
         mAuth.signOut();
         mGoogleSignInClient.signOut();

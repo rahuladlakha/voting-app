@@ -13,6 +13,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.mikhaellopez.circularimageview.CircularImageView;
+
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -33,7 +35,6 @@ public class ProfileFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_profile, container, false);
 
     }
@@ -62,7 +63,7 @@ public class ProfileFragment extends Fragment {
             ((TextView)getActivity().findViewById(R.id.emailTextView))
                     .setText(MainActivity.userEmail);
             if (bitmap != null){
-            ((ImageView)getActivity().findViewById(R.id.profileImageView))
+            ((CircularImageView)getActivity().findViewById(R.id.profileImageView))
                         .setImageBitmap(bitmap);
             }
 
