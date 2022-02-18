@@ -71,7 +71,8 @@ public class ResultsFragment extends Fragment {
                 ArrayList<Poll> tempPolls = new ArrayList<>();
                 for(DataSnapshot postSnapshot : snapshot.getChildren()) {
                     poll = postSnapshot.getValue(Poll.class);
-                    if(pollCodeArrayList.contains(poll.createdOn))
+                    assert poll != null;
+                    if(!poll.getOpen() && pollCodeArrayList.contains(poll.createdOn))
                         tempPolls.add(poll);
                 }
                 pollArrayList.clear();

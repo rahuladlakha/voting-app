@@ -66,6 +66,7 @@ public class PollsAdapter extends RecyclerView.Adapter<PollsAdapter.viewHolder> 
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         MainActivity.dbRef.child("Polls").child(poll.getCreatedOn()).child("open").setValue(false);
+                        MainActivity.dbRef.child("Users").child(poll.getCreatedBy()).child("votedPolls").child(poll.getCreatedOn()).setValue(poll.getCreatedOn());
                     }
                 }).setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
                     @Override
