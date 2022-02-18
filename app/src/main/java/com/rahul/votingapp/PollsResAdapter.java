@@ -16,12 +16,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class PollsAdapter extends RecyclerView.Adapter<PollsAdapter.viewHolder> {
+public class PollsResAdapter extends RecyclerView.Adapter<PollsResAdapter.viewHolder> {
 
     ArrayList<Poll> pollArrayList;
     Context context;
 
-    public PollsAdapter(ArrayList<Poll> pollArrayList, Context context) {
+    public PollsResAdapter(ArrayList<Poll> pollArrayList, Context context) {
         this.pollArrayList = pollArrayList;
         this.context = context;
     }
@@ -29,7 +29,7 @@ public class PollsAdapter extends RecyclerView.Adapter<PollsAdapter.viewHolder> 
     @NonNull
     @Override
     public viewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.poll, parent, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.poll_res, parent, false);
         return new viewHolder(view);
     }
 
@@ -45,14 +45,6 @@ public class PollsAdapter extends RecyclerView.Adapter<PollsAdapter.viewHolder> 
                 builder.setTitle("Question").setMessage(poll.getQuestion()).setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) { }
-                }).setNeutralButton("SHARE", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        Intent shareIntent = new Intent(Intent.ACTION_SEND);
-                        shareIntent.setType("text/plain");
-                        shareIntent.putExtra(Intent.EXTRA_TEXT, "http://vote.com/"+poll.getCreatedOn());
-                        context.startActivity(Intent.createChooser(shareIntent, "choose one"));
-                    }
                 });
                 AlertDialog dialog = builder.create();
                 dialog.show();
@@ -61,19 +53,9 @@ public class PollsAdapter extends RecyclerView.Adapter<PollsAdapter.viewHolder> 
         holder.button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                builder.setTitle("Are you sure?").setMessage("Are you sure that you want to permanently close the poll?").setPositiveButton("CONFIRM", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        MainActivity.dbRef.child("Polls").child(poll.getCreatedOn()).child("open").setValue(false);
-                        MainActivity.dbRef.child("Users").child(poll.getCreatedBy()).child("votedPolls").child(poll.getCreatedOn()).setValue(poll.getCreatedOn());
-                    }
-                }).setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) { }
-                });
-                AlertDialog dialog = builder.create();
-                dialog.show();
+                Intent resIntent = new Intent(context, FinalResultActivity.class);
+                resIntent.putExtra("PollCode", poll.createdOn);
+                context.startActivity(resIntent);
             }
         });
     }
@@ -90,8 +72,8 @@ public class PollsAdapter extends RecyclerView.Adapter<PollsAdapter.viewHolder> 
 
         public viewHolder(@NonNull View itemView) {
             super(itemView);
-            textView = itemView.findViewById(R.id.tvQuestion);
-            button = itemView.findViewById(R.id.btnClosePoll);
+            textView = itemView.findViewById(R.id.tvQuesRes);
+            button = itemView.findViewById(R.id.btnShowRes);
         }
     }
 }

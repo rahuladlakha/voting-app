@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.VotingApp">
         <activity
+            android:name=".FinalResultActivity"
+            android:exported="false" />
+        <activity
             android:name=".VoteActivity"
             android:exported="false" />
         <activity

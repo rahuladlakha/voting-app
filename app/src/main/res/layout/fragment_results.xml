@@ -6,9 +6,9 @@
     android:layout_height="match_parent"
     tools:context=".ResultsFragment">
 
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/underconstruction" />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvResPolls"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
 </FrameLayout>
