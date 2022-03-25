@@ -7,6 +7,8 @@ import androidx.fragment.app.Fragment;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
@@ -31,6 +33,22 @@ public class MainActivity extends AppCompatActivity {
     public static Uri imageUrl = null;
     static DatabaseReference dbRef;
     static DatabaseReference thisUserDBRef;
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main_menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == R.id.qrscanner){
+            Intent intent = new Intent(this, QRScanner.class);
+            startActivity(intent);
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
     public void signout(View view){
         //Toast.makeText(this, "tapped",Toast.LENGTH_SHORT).show();
@@ -88,6 +106,8 @@ public class MainActivity extends AppCompatActivity {
             Intent in = new Intent(MainActivity.this, VoteActivity.class);
             in.putExtra("POLL_CODE", pollCode);
             startActivity(in);
+
+
         }
 
         ((BottomNavigationView)findViewById(R.id.bottomNavigationView))
