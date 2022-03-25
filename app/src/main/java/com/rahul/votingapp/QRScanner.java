@@ -3,6 +3,7 @@ package com.rahul.votingapp;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
@@ -27,7 +28,15 @@ private CodeScanner mCodeScanner;
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        Toast.makeText(QRScanner.this, result.getText(), Toast.LENGTH_SHORT).show();
+                        String[] ar = result.getText().toString().trim().split("/");
+                        if (ar.length < 3) {
+                            Toast.makeText(QRScanner.this, "The QR code is invalid !", Toast.LENGTH_LONG).show();
+                            return;
+                        }
+                        String pollCode = ar[ar.length-1]; // Note that therre may be cases when pollCode was not even included in the link.
+                        Intent in = new Intent(QRScanner.this, VoteActivity.class);
+                        in.putExtra("POLL_CODE", pollCode);
+                        startActivity(in);
                     }
                 });
             }
