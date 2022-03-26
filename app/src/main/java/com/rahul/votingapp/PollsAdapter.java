@@ -45,7 +45,8 @@ public class PollsAdapter extends RecyclerView.Adapter<PollsAdapter.viewHolder> 
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(HomeFragment.instance.getContext(), SharePollActivity.class);
-                intent.putExtra("POLL_CODE", poll.getQuestion());
+                intent.putExtra("POLL_CODE", poll.createdOn);
+                intent.putExtra("Question", poll.question);
                 HomeFragment.instance.startActivity(intent);
 //                AlertDialog.Builder builder = new AlertDialog.Builder(context);
 //                builder.setTitle("Question").setMessage(poll.getQuestion()).setPositiveButton("Ok", new DialogInterface.OnClickListener() {

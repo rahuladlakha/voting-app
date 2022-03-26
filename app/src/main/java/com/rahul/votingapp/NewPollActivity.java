@@ -120,10 +120,11 @@ public class NewPollActivity extends AppCompatActivity implements View.OnClickLi
                     Poll poll = new Poll(ques, createdBy, createdOn, Options);
                     MainActivity.dbRef.child("Polls").child(createdOn).setValue(poll);
                     MainActivity.thisUserDBRef.child("Created Polls").child(createdOn).child("Poll Id").setValue(createdOn);
-                    Intent intent = new Intent(NewPollActivity.this, VoteActivity.class);
+                    Intent intent = new Intent(NewPollActivity.this, SharePollActivity.class);
                     intent.putExtra("POLL_CODE",createdOn);
+                    if (ques != null || !ques.isEmpty()) intent.putExtra("Question", ques);
                     startActivity(intent);
-                    openDialog(createdOn);
+                    finish();
                 } else {
                     Toast.makeText(NewPollActivity.this, "Error", Toast.LENGTH_LONG).show();
                 }
@@ -137,8 +138,8 @@ public class NewPollActivity extends AppCompatActivity implements View.OnClickLi
 //
     }
 
-    public void openDialog(String createdOn) {
-        SharePollLink sharePollLink = new SharePollLink(createdOn);
-        sharePollLink.show(getSupportFragmentManager(),createdOn);
-    }
+//    public void openDialog(String createdOn) {
+//        SharePollLink sharePollLink = new SharePollLink(createdOn);
+//        sharePollLink.show(getSupportFragmentManager(),createdOn);
+//    }
 }

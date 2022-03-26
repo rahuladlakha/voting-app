@@ -64,7 +64,7 @@ public class VoteActivity extends AppCompatActivity {
                     }
                 });
                 if (poll == null) {
-                    Toast.makeText(VoteActivity.this, "This link was invalid!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(VoteActivity.this, "This link was invalid!" + pollCode, Toast.LENGTH_LONG).show();
                     finish();
                 }
             }

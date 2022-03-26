@@ -77,7 +77,7 @@ public class HomeFragment extends Fragment {
         fabNewPoll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                fabNewPoll.animate().rotationBy(90).setDuration(100).withEndAction(new Runnable() {
+                fabNewPoll.animate().rotationBy(90).setDuration(1000).withEndAction(new Runnable() {
                     @Override
                     public void run() {
                         Intent intent = new Intent(getContext(), NewPollActivity.class);

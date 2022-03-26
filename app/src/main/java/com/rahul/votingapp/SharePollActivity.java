@@ -2,13 +2,17 @@ package com.rahul.votingapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Display;
+import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.zxing.WriterException;
 
@@ -25,7 +29,28 @@ public class SharePollActivity extends AppCompatActivity {
         setContentView(R.layout.activity_share_poll);
 
         QRcodeImageView = (ImageView) findViewById(R.id.QRimageView);
+        getSupportActionBar().hide();
         String pollCode = getIntent().getStringExtra("POLL_CODE").toString();
+        String ques  = getIntent().getStringExtra("Question");
+        if ( ques != null || !ques.isEmpty()) ((TextView)findViewById(R.id.questionTextView)).setText(ques);
+        //Toast.makeText(this, ""+ pollCode, Toast.LENGTH_LONG).show();
+        findViewById(R.id.sharePollButton).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent shareIntent = new Intent(Intent.ACTION_SEND);
+                shareIntent.setType("text/plain");
+                shareIntent.putExtra(Intent.EXTRA_TEXT, "http://vote.com/"+pollCode);
+                startActivity(Intent.createChooser(shareIntent, "choose one"));
+            }
+        });
+        findViewById(R.id.voteButton).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(SharePollActivity.this, VoteActivity.class);
+                intent.putExtra("POLL_CODE", String.valueOf(pollCode));
+                startActivity(intent);
+            }
+        });
         WindowManager manager = (WindowManager) getSystemService(WINDOW_SERVICE);
 
         // initializing a variable for default display.
