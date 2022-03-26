@@ -1,5 +1,8 @@
 package com.rahul.votingapp;
 
+import android.app.Activity;
+import android.app.ActivityManager;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -41,21 +44,24 @@ public class PollsAdapter extends RecyclerView.Adapter<PollsAdapter.viewHolder> 
         holder.textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                builder.setTitle("Question").setMessage(poll.getQuestion()).setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) { }
-                }).setNeutralButton("SHARE", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        Intent shareIntent = new Intent(Intent.ACTION_SEND);
-                        shareIntent.setType("text/plain");
-                        shareIntent.putExtra(Intent.EXTRA_TEXT, "http://vote.com/"+poll.getCreatedOn());
-                        context.startActivity(Intent.createChooser(shareIntent, "choose one"));
-                    }
-                });
-                AlertDialog dialog = builder.create();
-                dialog.show();
+                Intent intent = new Intent(HomeFragment.instance.getContext(), SharePollActivity.class);
+                intent.putExtra("POLL_CODE", poll.getQuestion());
+                HomeFragment.instance.startActivity(intent);
+//                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+//                builder.setTitle("Question").setMessage(poll.getQuestion()).setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialog, int which) { }
+//                }).setNeutralButton("SHARE", new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialog, int which) {
+//                        Intent shareIntent = new Intent(Intent.ACTION_SEND);
+//                        shareIntent.setType("text/plain");
+//                        shareIntent.putExtra(Intent.EXTRA_TEXT, "http://vote.com/"+poll.getCreatedOn());
+//                        context.startActivity(Intent.createChooser(shareIntent, "choose one"));
+//                    }
+//                });
+//                AlertDialog dialog = builder.create();
+//                dialog.show();
             }
         });
         holder.button.setOnClickListener(new View.OnClickListener() {

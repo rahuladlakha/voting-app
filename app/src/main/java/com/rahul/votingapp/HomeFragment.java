@@ -28,6 +28,10 @@ public class HomeFragment extends Fragment {
     RecyclerView rvPolls;
     public ArrayList<Poll> pollArrayList = new ArrayList<>();
     public PollsAdapter adapter;
+    public static Fragment instance = null;
+    public HomeFragment(){
+        instance = this;
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

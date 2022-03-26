@@ -20,6 +20,8 @@ private CodeScanner mCodeScanner;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_qrscanner);
 
+        if (getSupportActionBar() != null) getSupportActionBar().hide();
+
         CodeScannerView scannerView = findViewById(R.id.scanner_view);
         mCodeScanner = new CodeScanner(this, scannerView);
         mCodeScanner.setDecodeCallback(new DecodeCallback() {
